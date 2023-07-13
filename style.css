@@ -1,0 +1,138 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+
+/* RESET */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* START */
+body {
+  margin: auto;
+  min-width: 500px;
+  max-width: 60ch;
+  font-family: sans-serif;
+  font-size: 100%;
+  justify-content: center;
+  overflow: initial;
+}
+#header {
+  height: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0ch 1ch;
+}
+h1 {
+  font-size: 2em;
+  text-align: center;
+}
+#trackers, #stats {
+  display: flex;
+}
+#trackers {
+  align-items: center;
+  justify-content: space-evenly;
+}
+#stats {
+  justify-content: space-between;
+}
+#wands, #cups, #swords, #pentacles, #major {
+  display: flex;
+  flex-direction: column;
+  width: 13ch;
+  text-align: center;
+  font-size: 0.9em;
+}
+wands, cups, swords, pentacles, major {
+  padding: 0.2em;
+}
+barChart {
+  height: 10px;
+  width: 100%;
+}
+wands ~ barChart {
+  background-color: #ee252d;
+  color: white;
+}
+cups ~ barChart {
+  background: #0088d6;
+  color: white;
+}
+swords ~ barChart {
+  background: #fcf23b;
+}
+pentacles ~ barChart {
+  background: #51d282;
+}
+major ~ barChart {
+  background: #931f61;
+  color: white;
+}
+#controls {
+  display: flex;
+  justify-content: center;
+}
+button {
+  width: 12ch;
+  padding: 0.5ch;
+  margin-inline: 1ch;
+}
+#journal {
+  height: calc(100vh - 13em);
+  width: calc(100% + 1em);
+  margin: 2ch 0ch;
+  overflow-y: auto;
+}
+#journal p {
+  line-height: 1.25em;
+}
+#journal .result {
+  color: grey;
+  font-style: italic;
+}
+#journal .prompt {
+  font-family: monospace;
+  font-size: 1rem;
+}
