@@ -1,5 +1,7 @@
 /* app.js /
- * 
+ * CURRENT TASK:
+ * redraw (stamina) ability
+ * NOTES:
  * consider using events to trigger some of these actions?
  */
 
@@ -30,16 +32,16 @@ class Suit {
     this.score = l;
     switch (l) {
       case 1:
-        this.stat.setAttribute("style", "font-style: italic;");
-        this.em.innerHTML = "&minus;&minus;";
+        this.stat.setAttribute("style", "font-style: italic; text-decoration: underline;");
+        // this.em.innerHTML = "&minus;&minus;";
         break;
       case 2:
         this.stat.setAttribute("style", ";");
-        this.em.innerHTML = "";
+        // this.em.innerHTML = "";
         break;
       case 3:
         this.stat.setAttribute("style", "font-weight: bold;");
-        this.em.innerHTML = "&plus;&plus;";
+        // this.em.innerHTML = "&plus;&plus;";
         break;
     }
   }
@@ -56,15 +58,15 @@ class Suit {
     this.score++;
     if (this.score > 3) {
       this.score = 1;
-      this.stat.setAttribute("style", "font-style: italic;");
-      this.em.innerHTML = "&minus;&minus;";
+      this.stat.setAttribute("style", "font-style: italic; text-decoration: underline;");
+      // this.em.innerHTML = "&minus;&minus;";
     } else {
       if (this.score == 3) {
         this.stat.setAttribute("style", "font-weight: bold;");
-        this.em.innerHTML = "&plus;&plus;";
+        // this.em.innerHTML = "&plus;&plus;";
       } else {
         this.stat.setAttribute("style", ";");
-        this.em.innerHTML = "";
+        // this.em.innerHTML = "";
       }
     }
     saveState();
@@ -179,25 +181,6 @@ function draw() {
   if (pleaseShuffle) {
   } else {
     getCardText(deck[cardsDrawn++]);
-  }
-}
-
-function setStat(suit, statScore) {
-  const stat = document.getElementsByTagName(suit)[0];
-  const em = stat.getElementsByTagName("stat")[0];
-  switch (statScore) {
-    case 1:
-      stat.setAttribute("style", "font-weight: bold;");
-      em.innerHTML = "&plus;&plus;";
-      break;
-    case 2:
-      stat.setAttribute("style", "font-style: italic;");
-      em.innerHTML = "&minus;&minus;";
-      break;
-    case 3:
-      stat.setAttribute("style", ";");
-      em.innerHTML = "";
-      break;
   }
 }
 

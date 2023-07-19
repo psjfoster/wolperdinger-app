@@ -50,7 +50,6 @@ table {
 /* START */
 body {
   margin: auto;
-  min-width: 500px;
   max-width: 60ch;
   font-family: sans-serif;
   font-size: 100%;
@@ -81,12 +80,13 @@ h1 {
 #wands, #cups, #swords, #pentacles, #major {
   display: flex;
   flex-direction: column;
-  width: 13ch;
+  margin-inline: 0.5ch;
+  width: 20%;
   text-align: center;
-  font-size: 0.9em;
 }
 wands, cups, swords, pentacles, major {
-  padding: 0.2em;
+  font-size: 0.9em;
+  padding: 0.5ch 0ch;
 }
 barChart {
   height: 10px;
@@ -121,9 +121,10 @@ button {
 }
 #journal {
   height: calc(100vh - 13em);
-  width: calc(100% + 1em);
+  width: auto;
   margin: 2ch 0ch;
   overflow-y: auto;
+  padding: 0ch 1ch;
 }
 #journal p {
   line-height: 1.25em;
