@@ -32,11 +32,11 @@ class Suit {
     this.score = l;
     switch (l) {
       case 1:
-        this.stat.setAttribute("style", "font-style: italic; text-decoration: underline;");
+        this.stat.setAttribute("style", "color: DarkGrey; font-style: italic;");
         // this.em.innerHTML = "&minus;&minus;";
         break;
       case 2:
-        this.stat.setAttribute("style", ";");
+        this.stat.setAttribute("style", "");
         // this.em.innerHTML = "";
         break;
       case 3:
@@ -58,7 +58,7 @@ class Suit {
     this.score++;
     if (this.score > 3) {
       this.score = 1;
-      this.stat.setAttribute("style", "font-style: italic; text-decoration: underline;");
+      this.stat.setAttribute("style", "color: grey; font-style: italic;");
       // this.em.innerHTML = "&minus;&minus;";
     } else {
       if (this.score == 3) {
