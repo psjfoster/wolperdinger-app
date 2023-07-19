@@ -10,8 +10,6 @@ const debug = sessionStorage.getItem("debug");
 const cardsWithoutWheel = [{"suit":"wands","value":1},{"suit":"wands","value":2},{"suit":"wands","value":3},{"suit":"wands","value":4},{"suit":"wands","value":5},{"suit":"wands","value":6},{"suit":"wands","value":7},{"suit":"wands","value":8},{"suit":"wands","value":9},{"suit":"wands","value":10},{"suit":"wands","value":11},{"suit":"wands","value":12},{"suit":"wands","value":13},{"suit":"wands","value":14},{"suit":"cups","value":1},{"suit":"cups","value":2},{"suit":"cups","value":3},{"suit":"cups","value":4},{"suit":"cups","value":5},{"suit":"cups","value":6},{"suit":"cups","value":7},{"suit":"cups","value":8},{"suit":"cups","value":9},{"suit":"cups","value":10},{"suit":"cups","value":11},{"suit":"cups","value":12},{"suit":"cups","value":13},{"suit":"cups","value":14},{"suit":"swords","value":1},{"suit":"swords","value":2},{"suit":"swords","value":3},{"suit":"swords","value":4},{"suit":"swords","value":5},{"suit":"swords","value":6},{"suit":"swords","value":7},{"suit":"swords","value":8},{"suit":"swords","value":9},{"suit":"swords","value":10},{"suit":"swords","value":11},{"suit":"swords","value":12},{"suit":"swords","value":13},{"suit":"swords","value":14},{"suit":"pentacles","value":1},{"suit":"pentacles","value":2},{"suit":"pentacles","value":3},{"suit":"pentacles","value":4},{"suit":"pentacles","value":5},{"suit":"pentacles","value":6},{"suit":"pentacles","value":7},{"suit":"pentacles","value":8},{"suit":"pentacles","value":9},{"suit":"pentacles","value":10},{"suit":"pentacles","value":11},{"suit":"pentacles","value":12},{"suit":"pentacles","value":13},{"suit":"pentacles","value":14},{"suit":"major","number":"0","name":"fool","text":"A player character is punished for a past action."},{"suit":"major","number":"i","name":"magician","text":"The current player gets something they need."},{"suit":"major","number":"ii","name":"high priestess","text":"Something causes the current player to react instinctively."},{"suit":"major","number":"iii","name":"empress","text":"A non-player character wants to help the group."},{"suit":"major","number":"iv","name":"emperor","text":"A non-player character wants to be in charge."},{"suit":"major","number":"v","name":"hierophant","text":"A non-player character wants to play it safe."},{"suit":"major","number":"vi","name":"lovers","text":"The group meets somebody new."},{"suit":"major","number":"vii","name":"chariot","text":"The current situation is brought under control."},{"suit":"major","number":"viii","name":"strength","text":"Something forces the current player to act rashly."},{"suit":"major","number":"ix","name":"hermit","text":"Something affords the current player a moment of calm."},{"suit":"major","number":"xi","name":"justice","text":"Events here have consequences elsewhere."},{"suit":"major","number":"xii","name":"hanged man","text":"The current player must sacrifice something."},{"suit":"major","number":"xiii","name":"death","text":"A non-player character must make a difficult decision."},{"suit":"major","number":"xiv","name":"temperance","text":"The group must progress another way."},{"suit":"major","number":"xv","name":"devil","text":"The current situation begins to deteriorate."},{"suit":"major","number":"xvi","name":"tower","text":"The group's progress thus far is threatened."},{"suit":"major","number":"xvii","name":"star","text":"The current situation requires external influence."},{"suit":"major","number":"xviii","name":"moon","text":"The current player finds something interesting."},{"suit":"major","number":"xix","name":"sun","text":"The group makes good progress."},{"suit":"major","number":"xx","name":"judgement","text":"A non-player character's hard work pays off."},{"suit":"major","number":"xxi","name":"world","text":"A player character is rewarded for a past action."}];
 // wheel to be inserted randomly after halfway
 const wheelCard = {"suit":"major","number":"x","name":"wheel of fortune","text":"Shuffle the deck. Each player gains an experience point at the end of the session."}
-
-// html elements must be explicitly fetched
 const journal = document.getElementById("journal");
 
 class Suit {
@@ -75,6 +73,7 @@ class Suit {
 }
 
 const suits = [ new Suit(), new Suit(), new Suit(), new Suit(), new Suit() ];
+// html elements must be explicitly fetched
 // wands
 suits[0].bar = document.getElementById("wandBar");
 suits[0].stat = document.getElementsByTagName("wands")[0];
@@ -171,7 +170,8 @@ function shuffle() {
     suits[2].left = s; suits[2].set();
     suits[3].left = p; suits[3].set();
     suits[4].left = m; suits[4].set();
-    console.log(`Wands: ${w}\nCups: ${c}\nSwords: ${s}\nPentacles: ${p}\nMajor: ${m}`);
+    console.log(`Wands: ${w}  Cups: ${c}  Swords: ${s}  Pentacles: ${p}  Major: ${m}`);
+    calcOdds();
   } else {
     suits.forEach(s => { s.reset(); });
   }
@@ -180,47 +180,60 @@ function shuffle() {
 function draw() {
   if (pleaseShuffle) {
   } else {
+    if (debug == "true") {
+      calcOdds();
+    }
     getCardText(deck[cardsDrawn++]);
   }
 }
 
+function calcOdds() {
+  var p = suits[0].left, q = suits[1].left, r = suits[2].left, s = suits[3].left, t = suits[4].left;
+  var u = p + q + r + s + t;
+  console.log(`Wands: ${(p / u * 100).toFixed(0)}%  Cups: ${(q / u * 100).toFixed(0)}%  Swords: ${(r / u * 100).toFixed(0)}%  Pentacles: ${(s / u * 100).toFixed(0)}%  Major: ${(t / u * 100).toFixed(0)}%`);
+}
+
 function getCardText(card) {
   if (card.suit != "major") {
-    printResult(`You draw the ${card.value} of ${card.suit}.`);
+    var result = (`You draw the ${card.value} of ${card.suit}. `);
+    var prompt = "";
     switch (card.suit) {
       case "wands":
         suits[0].draw();
-        statCheck(suits[0].score);
+        result += "(Action)"
+        prompt = statCheck(suits[0].score);
         break;
       case "cups":
         suits[1].draw();
-        statCheck(suits[1].score);
+        result += "(Interaction)"
+        prompt = statCheck(suits[1].score);
         break;
       case "swords":
         suits[2].draw();
-        statCheck(suits[2].score);
+        result += "(Abstraction)"
+        prompt = statCheck(suits[2].score);
         break;
       case "pentacles":
         suits[3].draw();
-        statCheck(suits[3].score);
+        result += "(Reaction)"
+        prompt = statCheck(suits[3].score);
         break;
     }
+    printResult(result);
+    printPrompt(prompt);
   } else {
     getCardTextMajor(card);
   }
 }
 
-function statCheck(stat) {
-  switch (stat) {
+function statCheck(score) {
+  switch (score) {
     case 3:
-      printPrompt("Exactly what you want happens.");
-      break;
+      return "Mostly what you want happens.";
     case 1:
-      printPrompt("Something you don't want happens.");
-      break;
+      return "Something you don't want happens.";
     case 2:
-      printPrompt("Roughly what you expect happens.");
-      break;
+      return "Roughly what you expect happens.";
   }
 }
 

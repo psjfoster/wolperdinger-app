@@ -72,7 +72,11 @@ h1 {
 }
 #trackers {
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+#stamina, #xp {
+  text-align: center;
+  width: 40%;
 }
 #stats {
   justify-content: space-between;
@@ -90,7 +94,6 @@ wands, cups, swords, pentacles, major {
 }
 barChart {
   height: 10px;
-  width: 100%;
 }
 wands ~ barChart {
   background-color: #ee252d;

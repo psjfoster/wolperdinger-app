@@ -12,11 +12,19 @@
     <div id="header">
       <h1 contenteditable="true" spellcheck="false">Wolperdinger App</h1>
       <div id="trackers">
-        <div id="xp">XP this session: <em>0</em></div>
+        <div id="stamina">
+          <p>Stamina</p>
+          <input type="radio" checked aria-label="stamina"/>
+          <input type="radio" checked aria-label="stamina"/>
+          <input type="radio" checked aria-label="stamina"/>
+          <input type="radio" checked aria-label="stamina"/>
+          <input type="radio" checked aria-label="stamina"/>
+        </div>
         <div id="major">
           <major>Fate</major>
-          <barChart id="majorBar"/>
+          <barChart id="majorBar"></barChart>
         </div>
+        <div id="xp">XP this session: <em>0</em></div>
       </div>
 
       <div id="stats">
@@ -33,14 +41,16 @@
           <barChart id="swordBar"/>
         </div>
         <div id="pentacles">
-          <pentacles onclick="suits[3].setScore()">Perception<stat></stat></pentacles>
+          <pentacles onclick="suits[3].setScore()">Reaction<stat></stat></pentacles>
           <barChart id="pentacleBar"/>
         </div>
       </div>
+
       <div id="controls">
         <button name="shuffle" id="shufflebutton" type="button" onclick="shuffle()">Shuffle</button>
         <button name="draw" id="drawbutton" type="button" onclick="draw()">Draw</button>
-        <button name="save" id="savebutton" type="button" onclick="exportPrompts()">Save</button>
+        <button name="redraw" id="redrawbutton" type="button" onclick="">Redraw</button>
+        <button name="save" id="savebutton" type="button" onclick="exportPrompts()">Export</button>
       </div>
     </div>
     <div id="journal">
