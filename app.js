@@ -212,13 +212,13 @@ function getCardText(card) {
 
 function statCheck(stat) {
   switch (stat) {
-    case 1:
+    case 3:
       printPrompt("Exactly what you want happens.");
       break;
-    case 2:
+    case 1:
       printPrompt("Something you don't want happens.");
       break;
-    case 3:
+    case 2:
       printPrompt("Roughly what you expect happens.");
       break;
   }
