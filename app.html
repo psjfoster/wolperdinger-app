@@ -14,11 +14,11 @@
       <div id="trackers">
         <div id="stamina">
           <p>Stamina</p>
-          <input type="radio" checked aria-label="stamina"/>
-          <input type="radio" checked aria-label="stamina"/>
-          <input type="radio" checked aria-label="stamina"/>
-          <input type="radio" checked aria-label="stamina"/>
-          <input type="radio" checked aria-label="stamina"/>
+          <input type="checkbox" checked name="stamina" aria-label="stamina"/>
+          <input type="checkbox" checked name="stamina" aria-label="stamina"/>
+          <input type="checkbox" checked name="stamina" aria-label="stamina"/>
+          <input type="checkbox" checked name="stamina" aria-label="stamina"/>
+          <input type="checkbox" checked name="stamina" aria-label="stamina"/>
         </div>
         <div id="major">
           <major>Fate</major>
@@ -29,30 +29,47 @@
 
       <div id="stats">
         <div id="wands">
-          <wands onclick="suits[0].setScore()">Action<stat></stat></wands>
+          <wands onclick="suits[0].setScore()">Action
+            <stat></stat>
+          </wands>
           <barChart id="wandBar"/>
         </div>
         <div id="cups">
-          <cups onclick="suits[1].setScore()">Interaction<stat></stat></cups>
+          <cups onclick="suits[1].setScore()">Interaction
+            <stat></stat>
+          </cups>
           <barChart id="cupBar"/>
         </div>
         <div id="swords">
-          <swords onclick="suits[2].setScore()">Abstraction<stat></stat></swords>
+          <swords onclick="suits[2].setScore()">Abstraction
+            <stat></stat>
+          </swords>
           <barChart id="swordBar"/>
         </div>
         <div id="pentacles">
-          <pentacles onclick="suits[3].setScore()">Reaction<stat></stat></pentacles>
+          <pentacles onclick="suits[3].setScore()">Reaction
+            <stat></stat>
+          </pentacles>
           <barChart id="pentacleBar"/>
         </div>
       </div>
 
       <div id="controls">
-        <button name="shuffle" id="shufflebutton" type="button" onclick="shuffle()">Shuffle</button>
-        <button name="draw" id="drawbutton" type="button" onclick="draw()">Draw</button>
-        <button name="redraw" id="redrawbutton" type="button" onclick="">Redraw</button>
-        <button name="save" id="savebutton" type="button" onclick="exportPrompts()">Export</button>
+        <button name="shuffle" id="shufflebutton" type="button"
+          onclick="shuffle()">Shuffle
+        </button>
+        <button name="draw" id="drawbutton" type="button"
+          onclick="draw()">Draw
+        </button>
+        <button name="redraw" disabled id="redrawbutton" type="button"
+          onclick="redraw()">Push
+        </button>
+        <button name="save" id="savebutton" type="button"
+          onclick="exportPrompts()">Export
+        </button>
       </div>
     </div>
+
     <div id="journal">
     </div>
     <script src="app.js"></script>

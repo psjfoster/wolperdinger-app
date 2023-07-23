@@ -132,6 +132,10 @@ button {
 #journal p {
   line-height: 1.25em;
 }
+#journal .choice {
+  color: #e59e41;
+  font-style: italic;
+}
 #journal .result {
   color: grey;
   font-style: italic;
